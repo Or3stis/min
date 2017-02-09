@@ -1,3 +1,5 @@
+/* global requestIdleCallback */
+
 var navbar = document.getElementById('navbar')
 var tabContainer = document.getElementById('tabs')
 

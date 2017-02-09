@@ -184,9 +184,9 @@ function fullTextPlacesSearch (searchText, callback) {
   getMatchingDocs(searchWords).then(function (docs) {
     const docTermCounts = {}
     const totalCounts = {}
-    let totalIndexLength = 0
+    var totalIndexLength = 0
 
-    for (let i = 0; i < sl; i++) {
+    for (var i = 0; i < sl; i++) {
       totalCounts[searchWords[i]] = 0
     }
 
@@ -195,11 +195,11 @@ function fullTextPlacesSearch (searchText, callback) {
       const termCount = {}
       const index = doc.searchIndex
 
-      for (let i = 0; i < sl; i++) {
-        let count = 0
+      for (var i = 0; i < sl; i++) {
+        var count = 0
         const token = searchWords[i]
 
-        let idx = doc.searchIndex.indexOf(token)
+        var idx = doc.searchIndex.indexOf(token)
 
         while (idx !== -1) {
           count++
@@ -216,12 +216,12 @@ function fullTextPlacesSearch (searchText, callback) {
 
     const dl = docs.length
 
-    for (let i = 0; i < dl; i++) {
-      let doc = docs[i]
+    for (var i = 0; i < dl; i++) {
+      var doc = docs[i]
       const indexLen = doc.searchIndex.length
       const termCounts = docTermCounts[doc.url]
 
-      for (let x = 0; x < sl; x++) {
+      for (var x = 0; x < sl; x++) {
         doc.boost = Math.min(1 + ((termCounts[searchWords[x]]) / indexLen) / (totalCounts[searchWords[x]] / totalIndexLength) * 1.5, 2)
       }
 

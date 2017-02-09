@@ -1,12 +1,14 @@
+/* global tabs requestAnimationFrame getTabElement */
+
 /* fades out tabs that are inactive */
 
-var tabActivity = {
+const tabActivity = {
   minFadeAge: 330000,
   refresh: function () {
     requestAnimationFrame(function () {
-      var tabSet = tabs.get()
-      var selected = tabs.getSelected()
-      var time = Date.now()
+      const tabSet = tabs.get()
+      const selected = tabs.getSelected()
+      const time = Date.now()
 
       tabSet.forEach(function (tab) {
         if (selected === tab.id) { // never fade the current tab

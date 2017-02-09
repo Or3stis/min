@@ -1,3 +1,5 @@
+/* global tabs requestIdleCallback */
+
 var colorExtractorCanvas = document.createElement('canvas')
 var colorExtractorContext = colorExtractorCanvas.getContext('2d')
 
@@ -60,8 +62,8 @@ function getColor (url, callback) {
 
     var res = largestPixelSet.split(',')
 
-    for (var i = 0; i < res.length; i++) {
-      res[i] = parseInt(res[i])
+    for (var l = 0; l < res.length; l++) {
+      res[l] = parseInt(res[l])
     }
 
     callback(res)
@@ -218,8 +220,8 @@ function setColor (bg, fg) {
   var background = document.getElementsByClassName('theme-background-color')
   var textcolor = document.getElementsByClassName('theme-text-color')
 
-  for (var i = 0; i < background.length; i++) {
-    background[i].style.backgroundColor = bg
+  for (var j = 0; j < background.length; j++) {
+    background[j].style.backgroundColor = bg
   }
 
   for (var i = 0; i < textcolor.length; i++) {

@@ -5,7 +5,7 @@ registerCustomBang({
   snippet: 'View Settings',
   isAction: true,
   fn: function (text) {
-    navigate(tabs.getSelected(), 'file://' + __dirname + '/pages/settings/index.html')
+    navigate(tabs.getSelected(), `file://${__dirname}/pages/settings/index.html`)
   }
 })
 

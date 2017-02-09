@@ -6,7 +6,7 @@ const BrowserWindow = electron.BrowserWindow // Module to create native browser 
 
 var userDataPath = app.getPath('userData')
 
-const browserPage = 'file://' + __dirname + '/index.html'
+const browserPage = `file://${__dirname}/index.html`
 
 var mainWindow = null
 var isFocusMode = false
@@ -46,9 +46,8 @@ function createWindow (cb) {
         height: size.height
       }
     } else {
-      var bounds = JSON.parse(data)
+      bounds = JSON.parse(data)
     }
-
 
 // maximizes the window frame in windows 10
 // fixes https://github.com/minbrowser/min/issues/214
@@ -79,7 +78,7 @@ function createWindowWithBounds (bounds, shouldMaximize) {
     minWidth: 320,
     minHeight: 500,
     titleBarStyle: 'hidden-inset',
-    icon: __dirname + '/icons/icon256.png'
+    icon: `${__dirname}/icons/icon256.png`
   })
 
   // and load the index.html of the app.
@@ -200,7 +199,7 @@ app.on('open-url', function (e, url) {
  *
  * Opens a new tab when all tabs are closed, and min is still open by clicking on the application dock icon
  */
-app.on('activate', function ( /* e, hasVisibleWindows */) {
+app.on('activate', function (/* e, hasVisibleWindows */) {
   if (!mainWindow && appIsReady) { // sometimes, the event will be triggered before the app is ready, and creating new windows will fail
     createWindow()
   }
@@ -338,10 +337,11 @@ function createAppMenu () {
         {
           label: 'Full Screen',
           accelerator: (function () {
-            if (process.platform == 'darwin')
+            if (process.platform === 'darwin') {
               return 'Ctrl+Command+F'
-            else
+            } else {
               return 'F11'
+            }
           })(),
           role: 'togglefullscreen'
         },
@@ -393,10 +393,11 @@ function createAppMenu () {
         {
           label: 'Inspect page',
           accelerator: (function () {
-            if (process.platform == 'darwin')
+            if (process.platform === 'darwin') {
               return 'Cmd+Alt+I'
-            else
+            } else {
               return 'Ctrl+Shift+I'
+            }
           })(),
           click: function (item, window) {
             sendIPCToWindow(window, 'inspectPage')
@@ -469,7 +470,7 @@ function createAppMenu () {
           accelerator: 'CmdOrCtrl+,',
           click: function (item, window) {
             sendIPCToWindow(window, 'addTab', {
-              url: 'file://' + __dirname + '/pages/settings/index.html'
+              url: `file://${__dirname}/pages/settings/index.html`
             })
           }
         },
@@ -528,7 +529,7 @@ function createAppMenu () {
       accelerator: 'CmdOrCtrl+,',
       click: function (item, window) {
         sendIPCToWindow(window, 'addTab', {
-          url: 'file://' + __dirname + '/pages/settings/index.html'
+          url: `file://${__dirname}/pages/settings/index.html`
         })
       }
     })
